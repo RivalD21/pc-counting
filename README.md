@@ -65,6 +65,19 @@ video frame → deteksi bounding box → cek apakah bounding box masuk/keluar po
 
 # Deployment
 
+## Docker
+
+1. Clone Repository
+   ```
+   git clone https://github.com/RivalD21/pc-counting.git
+   ```
+2. Masuk Direktori
+3. docker compose up --build -d
+4. Informasi Sistem  
+   Backend-API running di port 3000  
+   Websocket Brocker di port 8080  
+   Frontend running di port 7077
+
 ## Manual
 
 1. Clone Repository

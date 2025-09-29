@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+  pc-ai:
+    build: ./pc-ai
+    container_name: pc-ai
+    volumes:
+      - ./pc-ai:/app
+    depends_on:
+      - pc-api
+      - pc-ws
+
+  pc-api:
+    build: ./pc-api
+    container_name: pc-api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./pc-api:/app
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: asdzxc
+      DB_NAME: people_counting
+    depends_on:
+      - mysql
+
+  pc-ws:
+    build: ./pc-ws
+    container_name: pc-ws
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./pc-ws:/app
+
+  pc-fe:
+    build: ./pc-fe
+    container_name: pc-fe
+    ports:
+      - "7077:7077"
+    volumes:
+      - ./pc-fe:/app
+    depends_on:
+      - pc-api
+      - pc-ws
+
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: asdzxc
+      MYSQL_DATABASE: people_counting
+      MYSQL_USER: root
+      MYSQL_PASSWORD: asdzxc
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
