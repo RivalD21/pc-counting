@@ -19,7 +19,7 @@ services:
       - ./pc-api:/app
     environment:
       DB_HOST: mysql
-      DB_USER: root
+      DB_USER: ripal
       DB_PASSWORD: asdzxc
       DB_NAME: people_counting
     depends_on:
@@ -51,7 +51,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: asdzxc
       MYSQL_DATABASE: people_counting
-      MYSQL_USER: root
+      MYSQL_USER: ripal
       MYSQL_PASSWORD: asdzxc
     ports:
       - "3306:3306"
